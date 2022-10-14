@@ -19,7 +19,7 @@ export default function Home() {
           <h1>Y.P.</h1>
           <ul className=' gap-4 flex items-center navigation'>
             <li className='flex items-center gap-2'><BsFillMoonStarsFill /></li>
-            <li className='flex items-center gap-2'><BsImageAlt/> Bg animation</li>
+            <li className='flex items-center gap-2' ><BsImageAlt/> Bg animation</li>
             <li className='flex items-center gap-2'> <BsFillMouse3Fill/> Hover mode</li>
             <li><a href="">C.V.</a></li>
           </ul>
