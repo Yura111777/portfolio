@@ -23,3 +23,12 @@ main{
     top: 0;
     z-index: 1;
 }
+.title{
+    font-weight: 700;
+    font-size: 80px;
+    text-align: center;
+    margin-top: 100px;
+    transition: all .5s ease-in-out;
+    text-shadow:   var(--x-shadow)  var(--y-shadow) rgba(255,255,255,.5);
+    text-transform: uppercase;
+}

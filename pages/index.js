@@ -3,9 +3,35 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { BsFillMoonStarsFill, BsImageAlt, BsFillMouse3Fill} from 'react-icons/bs'
 import Canvas from '../components/Canvas'
+import { useEffect, useRef, useState } from 'react'
 
 
 export default function Home() {
+  const title = useRef();
+  const [elementTitle, setElementTitle] = useState(false)
+
+  useEffect(() => {
+    setElementTitle(title.current)
+    title.current.style.setProperty("--x-shadow", 0 + 'px');
+    title.current.style.setProperty("--y-shadow", 0 + 'px');
+  }, [])
+  if(elementTitle){
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    window.addEventListener('mousemove', function(e){
+      if(e.x > width/2){
+        elementTitle.style.setProperty("--x-shadow", -10 + 'px');
+      } else{
+        elementTitle.style.setProperty("--x-shadow", 10 + 'px');
+      }
+      if(e.y > height/4){
+        elementTitle.style.setProperty("--y-shadow", -10 + 'px');
+      } else {
+        elementTitle.style.setProperty("--y-shadow", 10 + 'px');
+      }
+    })
+  }
+
   return (
     <div  className=' bg-black min-h-screen pt-5'>
       <Head>
@@ -24,6 +50,7 @@ export default function Home() {
             <li><a href="">C.V.</a></li>
           </ul>
         </nav>
+        <h2 className='title' ref={title}>Full stack developer</h2>
       </main>
       <Canvas />
     </div>
