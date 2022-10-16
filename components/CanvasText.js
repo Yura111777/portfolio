@@ -18,7 +18,14 @@ const CanvasText = () => {
     c.height = window.innerHeight;
     let particleArray = [];
     let adjustX = 0;
-    let adjustY = -67.5;
+    let adjustY = -77.5;
+    let gradient = ctx.createLinearGradient(0, 0, c.width, c.height);
+    gradient.addColorStop(0, "red");
+    gradient.addColorStop(0.2, "yellow");
+    gradient.addColorStop(0.4, "green");
+    gradient.addColorStop(0.6, "cyan");
+    gradient.addColorStop(0.8, "blue");
+    gradient.addColorStop(1, "magenta");
     const mouse = {
       x: null,
       y: null,
@@ -33,19 +40,19 @@ const CanvasText = () => {
     ctx.fillStyle = "#fff";
     ctx.font = "bold 10px Arial";
     ctx.textAlign = 'center'
-    ctx.fillText("FULL STACK DEVELOPER", c.width/2/7.1, 100);
+    ctx.fillText("FULL STACK DEVELOPER", c.width/2/9.1, 100);
     const textCoordinates = ctx.getImageData(0, 0, c.width, c.height);
     class Particle {
       constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = 1.5;
+        this.size = 3;
         this.baseX = this.x;
         this.baseY = this.y;
         this.density = Math.random() * 30 + 1;
       }
-      draw() {
-        ctx.fillStyle = "#fff";
+      draw(color = '#fff') {
+        ctx.fillStyle = color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.closePath();
@@ -64,6 +71,7 @@ const CanvasText = () => {
         if (distance < mouse.radius) {
           this.x -= directionX;
           this.y -= directionY;
+          this.draw(gradient)
         } else {
           if (this.x !== this.baseX) {
             let dx = this.x - this.baseX;
@@ -88,7 +96,7 @@ const CanvasText = () => {
           ) {
             let positionX = x + adjustX;
             let positionY = y + adjustY;
-            particleArray.push(new Particle(positionX * 7.1, positionY * 8.3));
+            particleArray.push(new Particle(positionX * 9.1, positionY * 20.3));
           }
         }
       }
@@ -115,7 +123,7 @@ const CanvasText = () => {
          let dy = particleArray[a].y - particleArray[b].y;
          let distance = Math.sqrt(dx*dx + dy*dy);
           
-         if(distance < 10){
+         if(distance < 20){
           opacityValue = 0.5;
           ctx.strokeStyle=`rgba(255,255,255, ${opacityValue})`;
           ctx.lineWidth = 1;
