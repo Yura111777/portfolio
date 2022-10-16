@@ -12,7 +12,6 @@ const Canvas = () => {
 
   let ctx;
   if (c) {
-    console.log(c);
     ctx = c.getContext("2d");
     c.width = window.innerWidth;
     c.height = window.innerHeight;

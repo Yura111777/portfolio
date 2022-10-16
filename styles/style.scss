@@ -23,12 +23,21 @@ main{
     top: 0;
     z-index: 1;
 }
+.canvas-text{
+    @extend .canvas;
+    position: absolute;
+}
+.folder-title{
+    margin-top: 100px;
+}
 .title{
     font-weight: 700;
     font-size: 80px;
     text-align: center;
-    margin-top: 100px;
+    margin: 0;
     transition: all .5s ease-in-out;
-    text-shadow:   var(--x-shadow)  var(--y-shadow) rgba(255,255,255,.5);
     text-transform: uppercase;
+    color: rgba(0,0,0,0);
+    position: relative;
+    z-index: 2;
 }

@@ -2,36 +2,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { BsFillMoonStarsFill, BsImageAlt, BsFillMouse3Fill} from 'react-icons/bs'
-import Canvas from '../components/Canvas'
+import CanvasBackground from '../components/CanvasBackground'
+import CanvasText from '../components/CanvasText'
 import { useEffect, useRef, useState } from 'react'
 
 
 export default function Home() {
-  const title = useRef();
-  const [elementTitle, setElementTitle] = useState(false)
-
-  useEffect(() => {
-    setElementTitle(title.current)
-    title.current.style.setProperty("--x-shadow", 0 + 'px');
-    title.current.style.setProperty("--y-shadow", 0 + 'px');
-  }, [])
-  if(elementTitle){
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    window.addEventListener('mousemove', function(e){
-      if(e.x > width/2){
-        elementTitle.style.setProperty("--x-shadow", -10 + 'px');
-      } else{
-        elementTitle.style.setProperty("--x-shadow", 10 + 'px');
-      }
-      if(e.y > height/4){
-        elementTitle.style.setProperty("--y-shadow", -10 + 'px');
-      } else {
-        elementTitle.style.setProperty("--y-shadow", 10 + 'px');
-      }
-    })
-  }
-
   return (
     <div  className=' bg-black min-h-screen pt-5'>
       <Head>
@@ -40,7 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className=' container mx-auto'>
+      <main className=' container mx-auto text-center'>
         <nav className='flex align-middle justify-between items-center'>
           <h1>Y.P.</h1>
           <ul className=' gap-4 flex items-center navigation'>
@@ -50,9 +26,13 @@ export default function Home() {
             <li><a href="">C.V.</a></li>
           </ul>
         </nav>
-        <h2 className='title' ref={title}>Full stack developer</h2>
+        <div className='folder-title inline-block'>
+        <h2 className='title'>Full stack developer</h2>
+        </div>
+       
       </main>
-      <Canvas />
+      <CanvasBackground />
+      <CanvasText />
     </div>
   )
 }
