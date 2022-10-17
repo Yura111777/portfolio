@@ -12,7 +12,7 @@ const Canvas = () => {
 
   let ctx;
   if (c) {
-    ctx = c.getContext("2d");
+    ctx = c.getContext("2d", { alpha: false });
     c.width = window.innerWidth;
     c.height = window.innerHeight;
     let gradient = ctx.createLinearGradient(0, 0, c.width, c.height);

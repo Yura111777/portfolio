@@ -18,7 +18,7 @@ const CanvasText = () => {
     c.height = window.innerHeight;
     let particleArray = [];
     let adjustX = 0;
-    let adjustY = -77.5;
+    let adjustY = -77;
     let gradient = ctx.createLinearGradient(0, 0, c.width, c.height);
     gradient.addColorStop(0, "red");
     gradient.addColorStop(0.2, "yellow");
@@ -40,13 +40,14 @@ const CanvasText = () => {
     ctx.fillStyle = "#fff";
     ctx.font = "bold 10px Arial";
     ctx.textAlign = 'center'
-    ctx.fillText("FULL STACK DEVELOPER", c.width/2/9.1, 100);
+    let sizeX = window.innerWidth > 800 ? 9 : 3
+    ctx.fillText("FULL STACK DEVELOPER", c.width/2/sizeX, 100);
     const textCoordinates = ctx.getImageData(0, 0, c.width, c.height);
     class Particle {
       constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = 3;
+        this.size = window.innerWidth > 800 ? 3 : 1;
         this.baseX = this.x;
         this.baseY = this.y;
         this.density = Math.random() * 30 + 1;
@@ -96,7 +97,9 @@ const CanvasText = () => {
           ) {
             let positionX = x + adjustX;
             let positionY = y + adjustY;
-            particleArray.push(new Particle(positionX * 9.1, positionY * 20.3));
+            let sizeX = window.innerWidth > 800 ? 9 : 3
+            let sizeY = window.innerWidth > 800 ? 20 : 10
+            particleArray.push(new Particle(positionX * sizeX, positionY * sizeY));
           }
         }
       }
@@ -117,13 +120,14 @@ const CanvasText = () => {
 
     function connect () {
       let opacityValue = 1;
+      let distanceSize = window.innerWidth > 800 ? 20 : 10
       for (let a = 0; a < particleArray.length; a++) {
         for (let b = a; b < particleArray.length; b++) {
          let dx = particleArray[a].x - particleArray[b].x;
          let dy = particleArray[a].y - particleArray[b].y;
          let distance = Math.sqrt(dx*dx + dy*dy);
           
-         if(distance < 20){
+         if(distance < distanceSize){
           opacityValue = 0.5;
           ctx.strokeStyle=`rgba(255,255,255, ${opacityValue})`;
           ctx.lineWidth = 1;

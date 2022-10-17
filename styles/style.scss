@@ -40,4 +40,12 @@ main{
     color: rgba(0,0,0,0);
     position: relative;
     z-index: 2;
+    
+}
+@media (max-width: 800px){
+    .title{
+        display: none;
+        font-size: 0;
+    }
+
 }

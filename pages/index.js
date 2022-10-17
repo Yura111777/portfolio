@@ -26,9 +26,7 @@ export default function Home() {
             <li><a href="">C.V.</a></li>
           </ul>
         </nav>
-        <div className='folder-title inline-block'>
-        <h2 className='title'>Full stack developer</h2>
-        </div>
+       
        
       </main>
       <CanvasBackground />
